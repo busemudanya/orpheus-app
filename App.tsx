@@ -12,17 +12,8 @@ import {
   Animated,
   ImageSourcePropType
 } from 'react-native';
-import { styled } from 'nativewind';
 import { LinearGradient } from 'expo-linear-gradient';
 
-// Styled components
-const StyledView = styled(View);
-const StyledText = styled(Text);
-const StyledTouchableOpacity = styled(TouchableOpacity);
-const StyledTextInput = styled(TextInput);
-const StyledImageBackground = styled(ImageBackground);
-const StyledImage = styled(Image);
-const StyledScrollView = styled(ScrollView);
 
 // Types
 interface Message {
@@ -102,7 +93,7 @@ const FloatingCharacter: React.FC<FloatingCharacterProps> = ({ source, delay = 0
 
   return (
     <Animated.View style={[style, { transform: [{ translateY }] }]}>
-      <StyledImage source={source} className="w-32 h-32" resizeMode="contain" />
+      <Image source={source} className="w-32 h-32" resizeMode="contain" />
     </Animated.View>
   );
 };
@@ -129,9 +120,9 @@ const BreathingAnimation: React.FC = () => {
   }, []);
 
   return (
-    <StyledView className="items-center justify-center">
+    <View className="items-center justify-center">
       <Animated.View style={{ transform: [{ scale: scaleValue }] }}>
-        <StyledImage
+        <Image
           source={{ uri: 'https://i.imgur.com/S7Y4wsi.png' }}
           className="w-40 h-40"
           resizeMode="contain"
@@ -149,7 +140,7 @@ const BreathingAnimation: React.FC = () => {
           transform: [{ scale: scaleValue }]
         }}
       />
-    </StyledView>
+    </View>
   );
 };
 
@@ -271,20 +262,20 @@ export default function App() {
   // Welcome Screen
   if (screen === 'welcome') {
     return (
-      <StyledImageBackground
+      <ImageBackground
         source={{ uri: 'https://i.imgur.com/fbzJOtU.png' }}
         className="flex-1"
         resizeMode="cover"
       >
-        <StyledView className="flex-1 p-6">
-          <StyledView className="p-6">
-            <StyledText className="text-4xl font-bold text-white mb-2">
+        <View className="flex-1 p-6">
+          <View className="p-6">
+            <Text className="text-4xl font-bold text-white mb-2">
               Welcome to Orpheus!
-            </StyledText>
-            <StyledText className="text-lg text-gray-300 leading-relaxed">
+            </Text>
+            <Text className="text-lg text-gray-300 leading-relaxed">
               Personalized affirmations and meditations to reset your mind and reduce stress.
-            </StyledText>
-          </StyledView>
+            </Text>
+          </View>
 
           <FloatingCharacter
             source={{ uri: 'https://i.imgur.com/S7Y4wsi.png' }}
@@ -298,30 +289,30 @@ export default function App() {
             style={{ position: 'absolute', right: 40, bottom: 200, transform: [{ scale: 1.2 }] }}
           />
 
-          <StyledView className="absolute bottom-6 left-6 right-6">
-            <StyledTouchableOpacity
+          <View className="absolute bottom-6 left-6 right-6">
+            <TouchableOpacity
               onPress={() => setScreen('name')}
               className="bg-blue-500 py-4 rounded-2xl"
             >
-              <StyledText className="text-white text-xl font-semibold text-center">
+              <Text className="text-white text-xl font-semibold text-center">
                 Get Started
-              </StyledText>
-            </StyledTouchableOpacity>
-          </StyledView>
-        </StyledView>
-      </StyledImageBackground>
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </ImageBackground>
     );
   }
 
   // Name Input Screen
   if (screen === 'name') {
     return (
-      <StyledView className="flex-1 bg-[#141529] p-6">
-        <StyledText className="text-3xl font-bold text-white mb-8">
+      <View className="flex-1 bg-[#141529] p-6">
+        <Text className="text-3xl font-bold text-white mb-8">
           What should we call you?
-        </StyledText>
+        </Text>
         
-        <StyledTextInput
+        <TextInput
           value={userName}
           onChangeText={setUserName}
           placeholder="Type something..."
@@ -329,61 +320,61 @@ export default function App() {
           className="bg-indigo-900/50 text-white p-4 rounded-xl border border-indigo-800 mb-8"
         />
 
-        <StyledView className="absolute bottom-6 left-6 right-6">
-          <StyledTouchableOpacity
+        <View className="absolute bottom-6 left-6 right-6">
+          <TouchableOpacity
             onPress={() => setScreen('home')}
             disabled={!userName.trim()}
             className={`py-4 rounded-2xl ${userName.trim() ? 'bg-blue-500' : 'bg-gray-600'}`}
           >
-            <StyledText className="text-white text-xl font-semibold text-center">
+            <Text className="text-white text-xl font-semibold text-center">
               Continue
-            </StyledText>
-          </StyledTouchableOpacity>
-        </StyledView>
-      </StyledView>
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </View>
     );
   }
 
   // Home Screen
   if (screen === 'home') {
     return (
-      <StyledView className="flex-1 bg-[#141529] p-6">
-        <StyledText className="text-3xl font-bold text-white mb-8">
+      <View className="flex-1 bg-[#141529] p-6">
+        <Text className="text-3xl font-bold text-white mb-8">
           What do you need right now?
-        </StyledText>
+        </Text>
         
-        <StyledView className="space-y-4">
-          <StyledTouchableOpacity
+        <View className="space-y-4">
+          <TouchableOpacity
             onPress={() => startChat('meditation')}
             className="w-full h-64 rounded-3xl overflow-hidden"
           >
-            <StyledImageBackground
+            <ImageBackground
               source={{ uri: 'https://i.imgur.com/WPshCbq.png' }}
               className="w-full h-full justify-end p-4"
               resizeMode="cover"
             >
-              <StyledText className="text-xl font-semibold text-white">
+              <Text className="text-xl font-semibold text-white">
                 Meditation
-              </StyledText>
-            </StyledImageBackground>
-          </StyledTouchableOpacity>
+              </Text>
+            </ImageBackground>
+          </TouchableOpacity>
 
-          <StyledTouchableOpacity
+          <TouchableOpacity
             onPress={() => startChat('affirmations')}
             className="w-full h-64 rounded-3xl overflow-hidden mt-4"
           >
-            <StyledImageBackground
+            <ImageBackground
               source={{ uri: 'https://i.imgur.com/zoY5y9X.png' }}
               className="w-full h-full justify-end p-4"
               resizeMode="cover"
             >
-              <StyledText className="text-xl font-semibold text-white">
+              <Text className="text-xl font-semibold text-white">
                 Affirmations
-              </StyledText>
-            </StyledImageBackground>
-          </StyledTouchableOpacity>
-        </StyledView>
-      </StyledView>
+              </Text>
+            </ImageBackground>
+          </TouchableOpacity>
+        </View>
+      </View>
     );
   }
 
@@ -394,46 +385,46 @@ export default function App() {
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         className="flex-1 bg-[#141529]"
       >
-        <StyledView className="flex-row justify-between items-center p-6">
-          <StyledTouchableOpacity onPress={() => setScreen('home')} className="p-2">
-            <StyledText className="text-white text-2xl">←</StyledText>
-          </StyledTouchableOpacity>
-          <StyledTouchableOpacity onPress={() => setScreen('home')} className="p-2">
-            <StyledText className="text-white text-2xl">×</StyledText>
-          </StyledTouchableOpacity>
-        </StyledView>
+        <View className="flex-row justify-between items-center p-6">
+          <TouchableOpacity onPress={() => setScreen('home')} className="p-2">
+            <Text className="text-white text-2xl">←</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => setScreen('home')} className="p-2">
+            <Text className="text-white text-2xl">×</Text>
+          </TouchableOpacity>
+        </View>
 
-        <StyledScrollView className="flex-1 px-6">
+        <ScrollView className="flex-1 px-6">
           {chatMessages.map((msg, index) => (
-            <StyledView
+            <View
               key={index}
               className={`mb-4 ${msg.sender === 'ai' ? 'items-start' : 'items-end'}`}
             >
-              <StyledView
+              <View
                 className={`max-w-[75%] p-4 rounded-2xl ${
                   msg.sender === 'ai' ? 'bg-purple-900/20' : 'bg-blue-500'
                 }`}
               >
-                <StyledText className="text-white text-base">
+                <Text className="text-white text-base">
                   {msg.text}
-                </StyledText>
-              </StyledView>
-            </StyledView>
+                </Text>
+              </View>
+            </View>
           ))}
           
           {isAITyping && (
-            <StyledView className="items-start mb-4">
-              <StyledView className="bg-purple-900/20 p-4 rounded-2xl flex-row space-x-1">
-                <StyledView className="w-2 h-2 bg-purple-400 rounded-full" />
-                <StyledView className="w-2 h-2 bg-purple-400 rounded-full" />
-                <StyledView className="w-2 h-2 bg-purple-400 rounded-full" />
-              </StyledView>
-            </StyledView>
+            <View className="items-start mb-4">
+              <View className="bg-purple-900/20 p-4 rounded-2xl flex-row space-x-1">
+                <View className="w-2 h-2 bg-purple-400 rounded-full" />
+                <View className="w-2 h-2 bg-purple-400 rounded-full" />
+                <View className="w-2 h-2 bg-purple-400 rounded-full" />
+              </View>
+            </View>
           )}
-        </StyledScrollView>
+        </ScrollView>
 
-        <StyledView className="flex-row items-center p-4 border-t border-indigo-800">
-          <StyledTextInput
+        <View className="flex-row items-center p-4 border-t border-indigo-800">
+          <TextInput
             value={userInput}
             onChangeText={setUserInput}
             onSubmitEditing={handleSendMessage}
@@ -441,16 +432,16 @@ export default function App() {
             placeholderTextColor="#9ca3af"
             className="flex-1 bg-indigo-900/30 text-white px-4 py-3 rounded-3xl mr-3"
           />
-          <StyledTouchableOpacity
+          <TouchableOpacity
             onPress={handleSendMessage}
             disabled={!userInput.trim()}
             className={`w-12 h-12 rounded-full items-center justify-center ${
               userInput.trim() ? 'bg-blue-500' : 'bg-gray-600'
             }`}
           >
-            <StyledText className="text-white text-xl">➤</StyledText>
-          </StyledTouchableOpacity>
-        </StyledView>
+            <Text className="text-white text-xl">➤</Text>
+          </TouchableOpacity>
+        </View>
       </KeyboardAvoidingView>
     );
   }
@@ -458,108 +449,108 @@ export default function App() {
   // Loading Screen
   if (loading || screen === 'loading') {
     return (
-      <StyledView className="flex-1 bg-[#141529] items-center justify-center">
+      <View className="flex-1 bg-[#141529] items-center justify-center">
         <BreathingAnimation />
-        <StyledText className="text-white text-xl mt-12">
+        <Text className="text-white text-xl mt-12">
           {sessionType === 'affirmations' ? 'Creating affirmation audio' : 'Creating meditation audio'}
-        </StyledText>
-      </StyledView>
+        </Text>
+      </View>
     );
   }
 
   // Player Screen
   if (screen === 'player' && content) {
     return (
-      <StyledScrollView className="flex-1 bg-[#141529] p-6">
-        <StyledView className="flex-row justify-between items-center mb-8">
-          <StyledTouchableOpacity onPress={() => setScreen('rating')} className="p-2">
-            <StyledText className="text-white text-2xl">←</StyledText>
-          </StyledTouchableOpacity>
-        </StyledView>
+      <ScrollView className="flex-1 bg-[#141529] p-6">
+        <View className="flex-row justify-between items-center mb-8">
+          <TouchableOpacity onPress={() => setScreen('rating')} className="p-2">
+            <Text className="text-white text-2xl">←</Text>
+          </TouchableOpacity>
+        </View>
 
-        <StyledView className="items-center">
-          <StyledView className="w-80 h-80 rounded-full overflow-hidden mb-6">
-            <StyledImage
+        <View className="items-center">
+          <View className="w-80 h-80 rounded-full overflow-hidden mb-6">
+            <Image
               source={{ uri: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&h=400&fit=crop' }}
               className="w-full h-full"
               resizeMode="cover"
             />
-          </StyledView>
+          </View>
 
-          <StyledText className="text-2xl font-bold text-white mb-6">
+          <Text className="text-2xl font-bold text-white mb-6">
             {content.title}
-          </StyledText>
+          </Text>
 
-          <StyledView className="w-full bg-indigo-900/30 rounded-xl p-4 mb-6">
+          <View className="w-full bg-indigo-900/30 rounded-xl p-4 mb-6">
             {(sessionType === 'affirmations' ? content.affirmations : content.script)?.map((line, i) => (
-              <StyledText key={i} className="text-sm text-gray-300 mb-2">
+              <Text key={i} className="text-sm text-gray-300 mb-2">
                 {line}
-              </StyledText>
+              </Text>
             ))}
-          </StyledView>
+          </View>
 
-          <StyledView className="w-full space-y-3">
-            <StyledTouchableOpacity
+          <View className="w-full space-y-3">
+            <TouchableOpacity
               onPress={() => setScreen('chat')}
               className="w-full bg-blue-500 py-4 rounded-2xl"
             >
-              <StyledText className="text-white text-lg font-semibold text-center">
+              <Text className="text-white text-lg font-semibold text-center">
                 ✨ Change
-              </StyledText>
-            </StyledTouchableOpacity>
+              </Text>
+            </TouchableOpacity>
             
-            <StyledTouchableOpacity
+            <TouchableOpacity
               onPress={() => setScreen('rating')}
               className="w-full bg-blue-500 py-4 rounded-2xl"
             >
-              <StyledText className="text-white text-lg font-semibold text-center">
+              <Text className="text-white text-lg font-semibold text-center">
                 ✨ Save To Library
-              </StyledText>
-            </StyledTouchableOpacity>
-          </StyledView>
-        </StyledView>
-      </StyledScrollView>
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </ScrollView>
     );
   }
 
   // Rating Screen
   if (screen === 'rating') {
     return (
-      <StyledView className="flex-1 bg-[#141529] items-center justify-center p-6">
-        <StyledView className="items-center mb-12">
+      <View className="flex-1 bg-[#141529] items-center justify-center p-6">
+        <View className="items-center mb-12">
           <BreathingAnimation />
-          <StyledText className="text-3xl font-bold text-white mb-4 mt-8">
+          <Text className="text-3xl font-bold text-white mb-4 mt-8">
             How helpful was this session?
-          </StyledText>
-          <StyledText className="text-gray-300">
+          </Text>
+          <Text className="text-gray-300">
             Your feedback helps us personalize future sessions
-          </StyledText>
-        </StyledView>
+          </Text>
+        </View>
 
-        <StyledView className="flex-row space-x-4 mb-8">
+        <View className="flex-row space-x-4 mb-8">
           {[1, 2, 3, 4, 5].map((star) => (
-            <StyledTouchableOpacity
+            <TouchableOpacity
               key={star}
               onPress={() => handleRating(star)}
             >
-              <StyledText className={`text-5xl ${star <= rating ? 'text-yellow-400' : 'text-gray-500'}`}>
+              <Text className={`text-5xl ${star <= rating ? 'text-yellow-400' : 'text-gray-500'}`}>
                 ★
-              </StyledText>
-            </StyledTouchableOpacity>
+              </Text>
+            </TouchableOpacity>
           ))}
-        </StyledView>
+        </View>
 
         {rating > 0 && (
-          <StyledView className="items-center">
-            <StyledText className="text-green-400 text-xl mb-2">
+          <View className="items-center">
+            <Text className="text-green-400 text-xl mb-2">
               ✓ Thank you for your feedback!
-            </StyledText>
-            <StyledText className="text-gray-400">
+            </Text>
+            <Text className="text-gray-400">
               Redirecting to home...
-            </StyledText>
-          </StyledView>
+            </Text>
+          </View>
         )}
-      </StyledView>
+      </View>
     );
   }
 
