@@ -1,0 +1,38 @@
+Script started on 2025-11-02 22:24:25+00:00 [COMMAND="npx expo start --localhost" <not executed on terminal>]
+Starting project at /workspace
+Starting Metro Bundler
+▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+█ ▄▄▄▄▄ █ ██▀▀ ▀▄██ ▄▄▄▄▄ █
+█ █   █ █  ▀█ ▀█▄▄█ █   █ █
+█ █▄▄▄█ █▀  █▄▀▀▄██ █▄▄▄█ █
+█▄▄▄▄▄▄▄█▄█ ▀▄█▄█ █▄▄▄▄▄▄▄█
+█▄▄██ ▄▄▀▀█▄█▄▀▄ ▄██ ▀▄▄ ▄█
+█▀ ▄█▀ ▄▄▄ ▄█▀█▀ ▀▀  ▄  ▀██
+█▀█▀▀▀█▄▄ ▀▀▄▀▄ ▀▄▀▄▀▀▄ ▀██
+███▀▄█ ▄ ▀▀  ▄ ▄▄▄ ██▄ ▀███
+█▄▄█▄▄▄▄█ █ █▄ ▀▄ ▄▄▄ ▀ ▄▄█
+█ ▄▄▄▄▄ █▀▀ █▀█▀▀ █▄█ ▀▀▀██
+█ █   █ █▄▀▀▄▀▄▄█▄▄ ▄▄▀   █
+█ █▄▄▄█ █▀█▀ ▄ ▄▄▄▄ ▀█▀▀ ██
+█▄▄▄▄▄▄▄█▄█▄█▄▄█████▄▄▄▄▄▄█
+
+› Metro waiting on exp://127.0.0.1:8081
+› Scan the QR code above with Expo Go (Android) or the Camera app (iOS)
+
+› Using Expo Go
+› Press s │ switch to development build
+
+› Press a │ open Android
+› Press w │ open web
+
+› Press j │ open debugger
+› Press r │ reload app
+› Press m │ toggle menu
+› shift+m │ more tools
+› Press o │ open project code in your editor
+
+› Press ? │ show all commands
+
+Logs for your project will appear below. Press Ctrl+C to exit.
+
+Script done on 2025-11-02 22:24:47+00:00 [COMMAND_EXIT_CODE="0"]
