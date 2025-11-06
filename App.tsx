@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import {
+  Animated,
   View,
   Text,
   TextInput,
@@ -9,11 +10,9 @@ import {
   Image,
   KeyboardAvoidingView,
   Platform,
-  Animated,
-  ImageSourcePropType,
-  StyleProp,
-  ViewStyle,
 } from 'react-native';
+
+import WelcomeScreen from './components/WelcomeScreen';
 
 // Types
 interface Message {
@@ -56,52 +55,6 @@ const generateMeditation = async (thought: string): Promise<Content> => {
       'Let this truth settle into your being...',
     ],
   };
-};
-
-// Floating Character Component
-interface FloatingCharacterProps {
-  source: ImageSourcePropType;
-  delay?: number;
-  style?: StyleProp<ViewStyle>;
-}
-
-const FloatingCharacter: React.FC<FloatingCharacterProps> = ({ source, delay = 0, style }) => {
-  const animatedValue = useRef(new Animated.Value(0)).current;
-
-  useEffect(() => {
-    const animation = Animated.loop(
-      Animated.sequence([
-        Animated.timing(animatedValue, {
-          toValue: 1,
-          duration: 1500,
-          useNativeDriver: true,
-          delay: delay * 1000,
-        }),
-        Animated.timing(animatedValue, {
-          toValue: 0,
-          duration: 1500,
-          useNativeDriver: true,
-        }),
-      ])
-    );
-
-    animation.start();
-
-    return () => {
-      animation.stop();
-    };
-  }, [animatedValue, delay]);
-
-  const translateY = animatedValue.interpolate({
-    inputRange: [0, 1],
-    outputRange: [0, -15],
-  });
-
-  return (
-    <Animated.View style={[style, { transform: [{ translateY }] }]}>
-      <Image source={source} className="h-32 w-32" resizeMode="contain" />
-    </Animated.View>
-  );
 };
 
 // Breathing Animation Component
@@ -271,41 +224,7 @@ export default function App() {
 
   // Welcome Screen
   if (screen === 'welcome') {
-    return (
-      <ImageBackground
-        source={{ uri: 'https://i.imgur.com/fbzJOtU.png' }}
-        className="flex-1"
-        resizeMode="cover">
-        <View className="flex-1 p-6">
-          <View className="p-6">
-            <Text className="mb-2 text-4xl font-bold text-white">Welcome to Orpheus!</Text>
-            <Text className="text-lg leading-relaxed text-gray-300">
-              Personalized affirmations and meditations to reset your mind and reduce stress.
-            </Text>
-          </View>
-
-          <FloatingCharacter
-            source={{ uri: 'https://i.imgur.com/S7Y4wsi.png' }}
-            delay={0}
-            style={{ position: 'absolute', left: 40, top: '40%' }}
-          />
-
-          <FloatingCharacter
-            source={{ uri: 'https://i.imgur.com/SycdrUU.png' }}
-            delay={1.5}
-            style={{ position: 'absolute', right: 40, bottom: 200, transform: [{ scale: 1.2 }] }}
-          />
-
-          <View className="absolute bottom-6 left-6 right-6">
-            <TouchableOpacity
-              onPress={() => setScreen('name')}
-              className="rounded-2xl bg-blue-500 py-4">
-              <Text className="text-center text-xl font-semibold text-white">Get Started</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </ImageBackground>
-    );
+    return <WelcomeScreen onContinue={() => setScreen('name')} />;
   }
 
   // Name Input Screen
